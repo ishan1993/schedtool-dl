@@ -1,8 +1,15 @@
 # go on and adjust here if you don't like those flags
+ifeq (DIST, WIND_RIVER_8)
+CFLAGS=-Os -fomit-frame-pointer -s -pipe -m32 -DWIND_RIVER_8 \
+		--sysroot=/auto/andpkg/rep_cache/wr-x86/8.0/sysroots/core-32-rcpl25/sysroots/corei7-32-wrs-linux/
+LDFLAGS=-lm -m32 --sysroot=/auto/andpkg/rep_cache/wr-x86/8.0/sysroots/core-32-rcpl25/sysroots/corei7-32-wrs-linux/
+CC=x86-64-wrswrap-linux-gnu-gcc
+else
 CFLAGS=-Os -fomit-frame-pointer -s -pipe
 #CFLAGS=-Wall -g -fomit-frame-pointer -s -pipe -DDEBUG
 LDFLAGS=-lm
 CC=gcc
+endif
 # likewise, if you want to change the destination prefix
 DESTDIR=
 DESTPREFIX=/usr/local

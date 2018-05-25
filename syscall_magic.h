@@ -75,5 +75,10 @@ struct sched_attr {
 #define sched_getattr(pid, attr, size, flags) \
 	syscall(__NR_sched_getattr, pid, attr, size, flags)
 
+#ifdef WIND_RIVER_8
+#define sched_setattr(pid, attr, flags) \
+	syscall(__NR_sched_setattr, pid, attr, flags)
+#else
 #define sched_setattr(pid, attr, flags) \
 	syscall(__NR_sched_setattr, pid, attr)
+#endif
